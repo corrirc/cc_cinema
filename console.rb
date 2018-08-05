@@ -26,6 +26,8 @@ customer_1.save()
 customer_2.save()
 customer_3.save()
 
+customer_1.update()
+
 film_1 = Film.new({
   "title" => "Fight Club",
   "price" => "4"
@@ -46,6 +48,8 @@ film_1.save()
 film_2.save()
 film_3.save()
 
+film_2.update()
+
 ticket_1 = Ticket.new({
   "customer_id" => customer_1.id,
   "film_id" =>  film_1.id
@@ -64,6 +68,8 @@ ticket_3 = Ticket.new({
 ticket_1.save()
 ticket_2.save()
 ticket_3.save()
+
+ticket_1.update()
 
 customers = Customer.all()
 films = Film.all()

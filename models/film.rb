@@ -18,6 +18,12 @@ class Film
     @id = result.first["id"].to_i
   end
 
+  def update()
+    sql = "UPDATE films SET (title, price) = ($1, $2) WHERE id = $3"
+    values = [@title, @price, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def Film.all()
     sql = "SELECT * FROM films"
     films_hashes = SqlRunner.run(sql)
