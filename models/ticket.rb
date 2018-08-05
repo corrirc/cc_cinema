@@ -13,10 +13,19 @@ class Ticket
 
   def save()
     sql = "INSERT INTO tickets (customer_id, film_id) VALUES ($1, $2) RETURNING id"
-    values = [@name, @funds]
+    values = [@customer_id, @film_id]
     result = SqlRunner.run(sql, values)
-    @id = customer["id"].to_i
+    @id = result[0]["id"].to_i
   end
 
+  def Ticket.all()
+    sql = "SELECT * FROM tickets"
+    ticket_hashes = SqlRunner.run(sql)
+    return ticket_hashes.map{|ticket_hash| Ticket.new(ticket_hash)}
+  end
 
+  def Ticket.delete_all()
+    sql = "DELETE FROM tickets"
+    SqlRunner.run(sql)
+  end
 end

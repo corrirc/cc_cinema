@@ -15,9 +15,17 @@ class Film
     sql = "INSERT INTO films (title, price) VALUES ($1, $2) RETURNING id"
     values = [@title, @price]
     result = SqlRunner.run(sql, values)
-    @id = result["id"].to_i
+    @id = result.first["id"].to_i
   end
 
+  def Film.all()
+    sql = "SELECT * FROM films"
+    films_hashes = SqlRunner.run(sql)
+    return films_hashes.map{|film_hash| Film.new(film_hash)}
+  end
 
-
+  def Film.delete_all()
+    sql = "DELETE FROM films"
+    SqlRunner.run(sql)
+  end
 end
