@@ -1,5 +1,5 @@
-require('pry')
-require_relative('./models/customer')
+require('pry-byebug')
+require_relative('./models/customers')
 require_relative('./models/film')
 require_relative('./models/ticket')
 
@@ -17,6 +17,10 @@ customer_3 = Customer.new({
   "name" => "Lee",
   "funds" => "20"
 })
+
+customer_1.save()
+customer_2.save()
+customer_3.save()
 
 film_1 = Film.new({
   "title" => "Fight Club",
@@ -47,3 +51,7 @@ ticket_3 = Ticket.new({
   "customer_id" => customer_3.id,
   "film_id" =>  film_2.id
 })
+
+
+binding.pry
+nil
